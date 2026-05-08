@@ -1,1 +1,26 @@
+Python Solution
 
+class Solution(object):
+    def generateParenthesis(self, n):
+        """
+        :type n: int
+        :rtype: List[str]
+        """
+
+        arr = []
+
+        def gen_paren(n, opens=0, closes=0, b=''):
+
+            if len(b) == 2 * n:
+                arr.append(b)
+                return
+
+            if opens < n:
+                gen_paren(n, opens + 1, closes, b + '(')
+
+            if opens > closes:
+                gen_paren(n, opens, closes + 1, b + ')')
+
+        gen_paren(n)
+
+        return arr
